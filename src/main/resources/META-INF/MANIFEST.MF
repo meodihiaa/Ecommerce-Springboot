@@ -1,0 +1,41 @@
+Manifest-Version: 1.0
+Main-Class: com.ecommerce.admin.AdminApplication
+Class-Path: spring-security-core-5.7.8.jar jackson-datatype-jdk8-2.13.5.
+ jar json-smart-2.4.10.jar spring-boot-starter-jdbc-2.7.11.jar jakarta.p
+ ersistence-api-2.2.3.jar jakarta.xml.bind-api-2.3.3.jar spring-core-5.3
+ .27.jar hibernate-commons-annotations-5.1.2.Final.jar log4j-api-2.17.2.
+ jar spring-boot-starter-json-2.7.11.jar hibernate-validator-6.2.5.Final
+ .jar jakarta.transaction-api-1.3.3.jar spring-context-5.3.27.jar spring
+ -expression-5.3.27.jar jcip-annotations-1.0-1.jar spring-boot-starter-o
+ auth2-client-2.7.11.jar aspectjweaver-1.9.7.jar jackson-datatype-jsr310
+ -2.13.5.jar spring-boot-starter-mail-2.7.11.jar spring-boot-starter-val
+ idation-2.7.11.jar tomcat-embed-core-9.0.74.jar thymeleaf-extras-java8t
+ ime-3.0.4.RELEASE.jar spring-security-crypto-5.7.8.jar slf4j-api-1.7.36
+ .jar spring-boot-starter-data-jpa-2.7.11.jar spring-aop-5.3.27.jar spri
+ ng-tx-5.3.27.jar spring-boot-devtools-2.7.11.jar spring-boot-starter-se
+ curity-2.7.11.jar jboss-logging-3.4.3.Final.jar jakarta.mail-1.6.7.jar 
+ jackson-module-parameter-names-2.13.5.jar spring-security-web-5.7.8.jar
+  snakeyaml-1.30.jar tomcat-embed-websocket-9.0.74.jar spring-boot-start
+ er-thymeleaf-2.7.11.jar spring-data-commons-2.7.11.jar hibernate-core-5
+ .6.15.Final.jar nimbus-jose-jwt-9.22.jar spring-web-5.3.27.jar jakarta.
+ activation-1.2.2.jar txw2-2.3.8.jar HikariCP-4.0.3.jar spring-security-
+ oauth2-client-5.7.8.jar logback-core-1.2.12.jar spring-context-support-
+ 5.3.27.jar log4j-to-slf4j-2.17.2.jar accessors-smart-2.4.9.jar spring-b
+ oot-starter-logging-2.7.11.jar content-type-2.2.jar spring-boot-starter
+ -aop-2.7.11.jar thymeleaf-spring5-3.0.15.RELEASE.jar unbescape-1.1.6.RE
+ LEASE.jar spring-orm-5.3.27.jar spring-boot-starter-web-2.7.11.jar asm-
+ 9.3.jar antlr-2.7.7.jar spring-jcl-5.3.27.jar thymeleaf-extras-springse
+ curity5-3.0.5.RELEASE.jar spring-aspects-5.3.27.jar jackson-core-2.13.5
+ .jar jackson-databind-2.13.5.jar jakarta.validation-api-2.0.2.jar sprin
+ g-data-jpa-2.7.11.jar lombok-1.18.26.jar jandex-2.4.2.Final.jar tomcat-
+ embed-el-9.0.74.jar mysql-connector-j-8.0.33.jar spring-jdbc-5.3.27.jar
+  spring-boot-starter-tomcat-2.7.11.jar jaxb-runtime-2.3.8.jar jakarta.a
+ ctivation-api-1.2.2.jar classmate-1.5.1.jar spring-beans-5.3.27.jar oau
+ th2-oidc-sdk-9.35.jar byte-buddy-1.12.23.jar spring-security-oauth2-jos
+ e-5.7.8.jar jakarta.annotation-api-1.3.5.jar jul-to-slf4j-1.7.36.jar sp
+ ring-boot-2.7.11.jar spring-boot-starter-2.7.11.jar istack-commons-runt
+ ime-3.0.12.jar spring-boot-autoconfigure-2.7.11.jar spring-webmvc-5.3.2
+ 7.jar thymeleaf-3.0.15.RELEASE.jar logback-classic-1.2.12.jar spring-se
+ curity-config-5.7.8.jar spring-security-oauth2-core-5.7.8.jar jackson-a
+ nnotations-2.13.5.jar attoparser-2.0.5.RELEASE.jar lang-tag-1.6.jar
+
