@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://thymeleaf.org/">
+<html lang="en" xmlns:th="https://thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 
 
 <head th:replace="fragments::header">
@@ -39,6 +39,8 @@
                     <p th:text="${error}"></p>
                 </div>
                 <a th:href="@{/add-product}" class="btn btn-primary">Add new product</a>
+                <br>
+                <br>
                 <table th:if="${size > 0}" class="table">
                     <thead class="thead-dark">
                     <tr>
@@ -57,9 +59,12 @@
                         <td th:text="${product.category.name}"></td>
                         <td th:text="${product.costPrice}"></td>
                         <td th:text="${product.currentQuantity}"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><img style="height: 75px; width: 100px;" th:src="@{'data:image/jpeg;base64,' + ${product.image}}"></td>
+                        <td><a th:href="@{/update-product/{id} (id=${product.id})}" class="btn-primary btn">Update</a></td>
+                        <td>
+                            <a th:if="${product.activated} == true" th:href="@{/delete-product/(id=${product.id})}" class="btn btn-warning">Delete</a>
+                            <a th:if="${product.activated} == false" th:href="@{/enable-product/(id=${product.id})}" class="btn btn-danger">Enable</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
