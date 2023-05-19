@@ -39,8 +39,11 @@
                     <p th:text="${error}"></p>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <a th:href="@{/add-product}" class="btn btn-primary">Add new product</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a th:href="@{/products/0}" class="btn btn-primary">Back to Products</a>
                     </div>
                     <div class="col-md-6">
                         <form th:action="@{/search-result/0}" method="get">

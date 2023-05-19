@@ -51,6 +51,20 @@ public class ProductController {
         return "products";
     }
 
+    @GetMapping("/search-result/{pageNo}")
+    public String searchProducts(@PathVariable("pageNo") int pageNo, @RequestParam("keyword") String keyword, Model model, Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        Page<Product> products = productService.searchProducts(pageNo, keyword);
+        model.addAttribute("title", "Search Result");
+        model.addAttribute("size", products.getSize());
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("products", products);
+        return "result-products";
+    }
+
     @GetMapping("/add-product")
     public  String addProductForm(Model model, Principal principal) {
         if (principal == null) {
@@ -111,7 +125,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/delete-product", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String deleteProduct(Long id, RedirectAttributes attributes) {
+    public String deleteProduct(Long id, @RequestParam(required = false) Integer page, RedirectAttributes attributes) {
         try {
             productService.deleteById(id);
             attributes.addFlashAttribute("success", "Deleted successfully");
@@ -120,11 +134,11 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("failed", "Failed to delete product");
         }
-        return "redirect:/products";
+        return "redirect:/products/" + (page != null ? page : "");
     }
 
     @RequestMapping(value = "/enable-product", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String enableProduct(Long id, RedirectAttributes attributes) {
+    public String enableProduct(Long id, @RequestParam(required = false) Integer page, RedirectAttributes attributes) {
         try {
             productService.enabledById(id);
             attributes.addFlashAttribute("success", "Enabled successfully");
@@ -133,6 +147,8 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("failed", "Failed to enable product");
         }
-        return "redirect:/products";
+        return "redirect:/products/" + (page != null ? page : "");
     }
+
+
 }
