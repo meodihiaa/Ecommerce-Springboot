@@ -16,8 +16,8 @@ public interface ProductService {
     void deleteById(Long id);
     void enabledById(Long id);
     ProductDto getById(Long id);
-    Page<Product> findAll(int pageNo);
+    Page<ProductDto> pageProducts(int pageNo);
 
-    Page<Product> searchProducts(int pageNo, String keyword);
+    Page<ProductDto> searchProducts(int pageNo, String keyword);
 
 }

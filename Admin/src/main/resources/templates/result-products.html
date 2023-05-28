@@ -79,8 +79,8 @@
                         <td><img style="height: 75px; width: 100px;" th:src="@{'data:image/jpeg;base64,' + ${product.image}}"></td>
                         <td><a th:href="@{/update-product/{id} (id=${product.id})}" class="btn-primary btn">Update</a></td>
                         <td>
-                            <a th:if="${product.is_activated} == true" th:href="@{/delete-product/(id=${product.id},page=${currentPage})}" class="btn btn-warning">Delete</a>
-                            <a th:if="${product.is_activated} == false" th:href="@{/enable-product/(id=${product.id},page=${currentPage})}" class="btn btn-danger">Enable</a>
+                            <a th:if="${product.activated} == true" th:href="@{/delete-product/(id=${product.id},page=${currentPage})}" class="btn btn-warning">Delete</a>
+                            <a th:if="${product.activated} == false" th:href="@{/enable-product/(id=${product.id},page=${currentPage})}" class="btn btn-danger">Enable</a>
                         </td>
                     </tr>
                     </tbody>
