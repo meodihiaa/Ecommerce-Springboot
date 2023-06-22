@@ -27,6 +27,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ImageUpload imageUpload;
 
+    /*Admin*/
     @Override
     public List<ProductDto> findAll() {
         List<Product> products = productRepository.findAll();
@@ -133,6 +134,8 @@ public class ProductServiceImpl implements ProductService {
         return products;
     }
 
+
+
     private Page toPage(List<ProductDto> list, Pageable pageable) {
         if (pageable.getOffset() >= list.size())
             return Page.empty();
@@ -163,4 +166,14 @@ public class ProductServiceImpl implements ProductService {
         return productDtoList;
     }
 
+    /*Customer*/
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.getAllProducts();
+    }
+
+    @Override
+    public List<Product> listViewProducts() {
+        return productRepository.listViewProducts();
+    }
 }

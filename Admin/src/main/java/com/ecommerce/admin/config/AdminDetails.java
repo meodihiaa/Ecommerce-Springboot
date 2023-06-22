@@ -15,6 +15,7 @@ public class AdminDetails implements UserDetails {
     private Admin admin;
 
     @Override
+    /*trả về danh sách các quyền được cấp cho một người dùng*/
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         for (Role role: admin.getRoles()) {
