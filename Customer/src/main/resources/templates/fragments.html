@@ -14,17 +14,17 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
 </head>
 <body>
 <!-- Start Main Top -->
@@ -34,9 +34,9 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="our-link">
                     <ul>
-                        <li><a href="#"> Call US : +84967631186</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Address: Km9, Nguyen Trai, Thanh Xuan, Ha
-                            Noi</a></li>
+                        <li><a href="#"> Liên hệ : 0962701518</a></li>
+                        <li><a href="#"><i class="fas fa-location-arrow"></i> Address: Nguyễn Trãi, Thanh Xuân, Hà Nội
+                            </a></li>
                     </ul>
                 </div>
             </div>
@@ -174,7 +174,7 @@
     <div class="col-12 col-sm-8 text-center text-sm-left">
         <div class="toolbar-sorter-right">
             <span>Sort by </span>
-            <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+            <select id="basic2" class="selectpicker show-tick form-control" data-placeholder="$ USD">
                 <option data-display="Select">Nothing</option>
                 <option value="2">High Price → High Price</option>
                 <option value="3">Low Price → High Price</option>
@@ -226,42 +226,10 @@
 <!-- Start Feed  -->
 <div class="instagram-box" th:fragment="instagram-box">
     <div class="main-instagram owl-carousel owl-theme">
-        <div class="item">
+        <div class="item" th:each="product: ${products}">
             <div class="ins-inner-box">
-                <a href="index.html"><img src="images/Fish 01 - Fish Tacos.jpg" alt=""/></a>
+                <a th:href="@{/find-product/{id} (id=${product.id})}"><img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" alt=""/></a>
 
-            </div>
-        </div>
-        <div class="item">
-            <div class="ins-inner-box">
-                <img src="images/instagram-img-02.jpg" alt=""/>
-            </div>
-        </div>
-        <div class="item">
-            <div class="ins-inner-box">
-                <a href="index.html"><img src="images/Fish 04 - Red Pepper & Parmesan Tilapia.jpg" alt=""/></a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="ins-inner-box">
-                <a href="index.html"><img src="images/Fish 05 - Almond-Topped Fish.jpg" alt=""/></a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="ins-inner-box">
-                <a href="index.html"><img src="images/Shrimp 03 - Shrimp Tostadas with Avocado Salsa.jpg" alt=""/></a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="ins-inner-box">
-                <a href="index.html"><img src="images/Shrimp 08 - Grilled Shrimp and Chorizo Appetizers.jpg"
-                                          alt=""/></a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="ins-inner-box">
-                <a href="index.html"><img src="images/Octopus 06 - Red Wine–Braised Baby Octopus with Black Olives.jpg"
-                                          alt=""/></a>
             </div>
         </div>
     </div>
@@ -316,21 +284,21 @@
 <!-- Script -->
 <div th:fragment="script">
     <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
     <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+    <script th:src="@{/js/jquery.superslides.min.js}"></script>
+    <script th:src="@{/js/bootstrap-select.js}"></script>
+    <script th:src="@{/js/inewsticker.js}"></script>
+    <script th:src="@{/js/bootsnav.js.}"></script>
+    <script th:src="@{/js/images-loded.min.js}"></script>
+    <script th:src="@{/js/isotope.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/baguetteBox.min.js}"></script>
+    <script th:src="@{/js/form-validator.min.js}"></script>
+    <script th:src="@{/js/contact-form-script.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
 </div>
 </body>
 </html>

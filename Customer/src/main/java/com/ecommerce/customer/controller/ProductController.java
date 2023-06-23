@@ -19,30 +19,29 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/products")
-    public String products(Model model){
-        model.addAttribute("title","Products");
+    public String products(Model model) {
+        model.addAttribute("title", "Products");
         List<Product> products = productService.getAllProducts();
         List<Product> listViewProducts = productService.listViewProducts();
-        model.addAttribute("products",products);
-        model.addAttribute("viewProducts",listViewProducts);
+        model.addAttribute("products", products);
+        model.addAttribute("viewProducts", listViewProducts);
         return "shop";
     }
 
-    @GetMapping("/product-detail/{id}")
-    public String productDetail(@PathVariable("id") Long id, Model model, Principal principal) {
-        if (principal == null) {
+    @GetMapping("/find-product/{id}")
+    public String findProductById(@PathVariable("id") Long id, Model model, Principal principal) {
+/*        if (principal == null) {
             return "redirect:/login";
-        }
-        try {
-            /*List<Category> categories = categoryService.findAllByActivated();*/
+        }*/
+        Product product = productService.getProductById(id);
+        model.addAttribute("title", product.getName());
+        model.addAttribute("product", product);
+        Long categoryId = product.getCategory().getId();
+        List<Product> relatedProducts = productService.getRelatedProducts(categoryId);
+        model.addAttribute("relatedProducts",relatedProducts);
 
-            Product product = productService.getProductById(id);
-            model.addAttribute("title", product.getName());
-            /*model.addAttribute("categories", categories);*/
-            model.addAttribute("product", product);
-        } catch (Exception e) {
-
-        }
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
         return "product-detail";
     }
 }
