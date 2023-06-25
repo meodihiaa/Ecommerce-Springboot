@@ -43,8 +43,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="login-box">
                     <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
-                        <option value="http://localhost:8020/shop/login" id="login-button">Đăng nhập</option>
-                        <option value="http://localhost:8020/shop/register" id="register-button">Đăng ký</option>
+                        <!--<option th:text="${session.username != null} ? ${session.username} : 'Chưa đăng nhập'"></option>-->
+                        <option th:text="${session.username != null} ? ${session.username.substring(0,10) + '...' }: 'Chưa đăng nhập'" value="http://localhost:8020/shop"></option>
+                        <option th:if="${session.username == null}" value="http://localhost:8020/shop/login" id="login-button">Đăng nhập</option>
+                        <option th:if = "${session.username != null}" value="http://localhost:8020/shop/logout">Đăng xuất</option>
+                        <option th:if="${session.username == null}" value="http://localhost:8020/shop/register" id="register-button" >Đăng ký</option>
                     </select>
                 </div>
                 <div class="text-slid-box">

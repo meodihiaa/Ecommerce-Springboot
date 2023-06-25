@@ -18,19 +18,52 @@
         <div class="form">
             <br>
             <h2>ĐĂNG KÝ</h2>
-            <form action="">
+            <div th:if="${error}" class="text-center alert alert-danger">
+                <p th:text="${error}"></p>
+            </div>
+            <div th:if="${username}" class="text-center alert alert-warning">
+                <p th:text="${username}"></p>
+            </div>
+            <div th:if="${password}" class="text-center alert alert-warning">
+                <p th:text="${password}"></p>
+            </div>
+            <div th:if="${success}" class="text-center alert alert-success">
+                <p th:text="${success}"></p>
+            </div>
+
+            <form  th:action="@{/do-register}" method="post" th:object="${customerDto}">
                 <div class="input-form">
-                    <!-- <span>User name</span> -->
-                    <input type="text" placeholder="Tên" name="">
+                    <input type="text" th:field="*{lastName}" placeholder="Họ Đệm" name="">
                 </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}"
+                     th:errors = "*{lastName}">
+                </div>
+
                 <div class="input-form">
-                    <!-- <span>Password</span> -->
-                    <input type="password" placeholder="Mật khẩu" name="">
+                    <input type="text" th:field="*{firstName}" placeholder="Tên" name="">
                 </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}"
+                     th:errors = "*{firstName}">
+                </div>
+
                 <div class="input-form">
-                    <!-- <span>Password</span> -->
-                    <input type="password" placeholder="Xác nhận mật khẩu" name="">
+                    <input type="text" th:field="*{username}" placeholder="Tên đăng nhập" name="">
                 </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('username')}"
+                     th:errors = "*{username}">
+                </div>
+
+                <div class="input-form">
+                    <input type="password" th:field="*{password}" placeholder="Mật khẩu" name="">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}"
+                     th:errors = "*{password}">
+                </div>
+
+                <div class="input-form">
+                    <input type="password" th:field="*{repeatPassword}" placeholder="Xác nhận mật khẩu" name="">
+                </div>
+
                 <div class="input-form">
                     <p>Bạn có tài khoản chưa? <a th:href="@{/login}"> Đăng nhập </a></p>
                 </div>

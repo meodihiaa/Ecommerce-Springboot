@@ -3,6 +3,7 @@ package com.ecommerce.customer.config;
 import com.ecommerce.library.model.Customer;
 import com.ecommerce.library.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.stream.Collectors;
+
 
 public class CustomerServiceConfig implements UserDetailsService {
     @Autowired

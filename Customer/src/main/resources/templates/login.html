@@ -18,14 +18,20 @@
         <div class="form">
             <br>
             <h2>ĐĂNG NHẬP</h2>
-            <form action="">
+            <div th:if="${param.error}" class="text-center alert alert-danger">
+                <p>Tên đăng nhập hoặc mật khẩu không chính xác!</p>
+            </div>
+            <div th:if="${param.logout}" class="text-center alert alert-warning">
+                <p>Bạn đã đăng xuất!</p>
+            </div>
+            <form th:action="@{/do-login}" method="post">
                 <div class="input-form">
                     <!-- <span>User name</span> -->
-                    <input type="text" placeholder="Tên" name="">
+                    <input type="text" placeholder="Tên" name="username">
                 </div>
                 <div class="input-form">
                     <!-- <span>Password</span> -->
-                    <input type="password" placeholder="Mật khẩu" name="">
+                    <input type="password" placeholder="Mật khẩu" name="password">
                 </div>
                 <div class="Remember-me">
                     <label><input type="checkbox" name=""> Nhớ Tôi </label>
