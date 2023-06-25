@@ -8,7 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AuthController {
     @GetMapping("/login")
     public String login(Model model) {
-        model.addAttribute("title","Login");
+        model.addAttribute("title","Đăng nhập");
         return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("title", "Đăng ký");
+        return "register";
     }
 }

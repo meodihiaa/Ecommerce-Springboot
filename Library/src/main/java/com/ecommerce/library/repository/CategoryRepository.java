@@ -1,6 +1,8 @@
 package com.ecommerce.library.repository;
 
+import com.ecommerce.library.dto.CategoryDto;
 import com.ecommerce.library.model.Category;
+import com.ecommerce.library.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,4 +13,7 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query("select c from Category c where c.is_activated = true and c.is_deleted = false")
     List<Category> findAllByActivated();
+
+    @Query("select new com.ecommerce.library.dto.CategoryDto(c.id, c.name, count(p.category.id)) from Category c inner join Product p on c.id = p.category.id where c.is_activated = true and c.is_deleted = false group by c.id")
+    List<CategoryDto> getCategoryAndProduct();
 }

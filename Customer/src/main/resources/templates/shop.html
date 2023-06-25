@@ -31,17 +31,17 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4"  th:each="product: ${products}">
                                             <div class="products-single fix">
-                                                <div class="box-img-hover">                                       
-                                                    <img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" class="img-fluid" alt="Image">
+                                                <div class="box-img-hover">
+                                                    <a th:href="@{/find-product/{id} (id=${product.id})}"><img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" class="img-fluid" alt="Image"></a>
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li><a th:href="@{/find-product/{id} (id=${product.id}) }" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
+                                                        <a class="cart" href="#">Thêm vào giỏ hàng</a>
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4 th:text="${product.name}"></h4>
+                                                    <a th:href="@{/find-product/{id} (id=${product.id})}"><h4 th:text="${product.name}"></h4></a>
                                                     <h5 th:text="'$' + ${product.costPrice}"></h5>
                                                 </div>
                                             </div>
@@ -55,7 +55,7 @@
                                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                                 <div class="products-single fix">
                                                     <div class="box-img-hover">
-                                                        <img th:src="@{'data:image/jpeg;base64,' + ${viewProduct.image}}" class="img-fluid" alt="Image">
+                                                        <a th:href="@{/find-product/{id} (id=${viewProduct.id})}"><img th:src="@{'data:image/jpeg;base64,' + ${viewProduct.image}}" class="img-fluid" alt="Image"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,7 +64,7 @@
                                                     <h4 th:text="${viewProduct.name}"></h4>
                                                     <h5 th:text="'$' + ${viewProduct.costPrice}"></h5>
                                                     <p th:text="${viewProduct.description}"></p>
-                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                    <a class="btn hvr-hover" href="#">Thêm vào giỏ hàng</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,20 +79,20 @@
                     <div class="product-categori">
                         <div class="search-product">
                             <form action="#">
-                                <input class="form-control" placeholder="Search here..." type="text">
+                                <input class="form-control" placeholder="Tìm sản phẩm..." type="text">
                                 <button type="submit"> <i class="fa fa-search"></i> </button>
                             </form>
                         </div>
                         <div class="filter-sidebar-left">
                             <div class="title-left">
-                                <h3>Categories</h3>
+                                <h3>Loại sản phẩm</h3>
                             </div>
-                            <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
-                                <a href="#" class="list-group-item list-group-item-action">Crab <small class="text-muted">(7)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Fish <small class="text-muted">(6)</small></a>
+                            <div th:each="category: ${categories}" class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                                <a th:text="${category.name + ' (' + category.numberOfProducts + ')'}" th:href="@{/find-products-in-category/{id} (id=${category.id}) }" class="list-group-item list-group-item-action"></a>
+                                <!--<a href="#" class="list-group-item list-group-item-action">Fish <small class="text-muted">(6)</small></a>
                                 <a href="#" class="list-group-item list-group-item-action"> Lobster  <small class="text-muted">(8) </small></a>
                                 <a href="#" class="list-group-item list-group-item-action"> Octopus <small class="text-muted">(8)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action"> Shrimp <small class="text-muted">(8)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action"> Shrimp <small class="text-muted">(8)</small></a>-->
                             </div>
                         </div>
                         <div class="filter-price-left">

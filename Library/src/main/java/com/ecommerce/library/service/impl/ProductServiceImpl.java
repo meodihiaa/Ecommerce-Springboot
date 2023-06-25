@@ -120,7 +120,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductDto> pageProducts(int pageNo) {
-        Pageable pageable = PageRequest.of(pageNo,5);
+        Pageable pageable = PageRequest.of(pageNo, 5);
         List<ProductDto> products = transfer(productRepository.findAll());
         Page<ProductDto> productPages = toPage(products, pageable);
         return productPages;
@@ -133,7 +133,6 @@ public class ProductServiceImpl implements ProductService {
         Page<ProductDto> products = toPage(productDtoList, pageable);
         return products;
     }
-
 
 
     private Page toPage(List<ProductDto> list, Pageable pageable) {
@@ -149,7 +148,7 @@ public class ProductServiceImpl implements ProductService {
 
     private List<ProductDto> transfer(List<Product> products) {
         List<ProductDto> productDtoList = new ArrayList<>();
-        for (Product product: products) {
+        for (Product product : products) {
             ProductDto productDto = new ProductDto();
             productDto.setId(product.getId());
             productDto.setName(product.getName());
@@ -186,4 +185,20 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getRelatedProducts(Long categoryId) {
         return productRepository.getRelatedProducts(categoryId);
     }
+
+    @Override
+    public List<Product> getProductsInCategory(Long categoryId) {
+        return productRepository.getProductsInCategory(categoryId);
+    }
+
+    @Override
+    public List<Product> getHighPrice() {
+        return productRepository.getHighPrice();
+    }
+
+    @Override
+    public List<Product> getLowPrice() {
+        return productRepository.getLowPrice();
+    }
+
 }

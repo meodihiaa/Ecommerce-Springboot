@@ -12,12 +12,12 @@
 <div th:replace="fragments::top-search"></div>
 <div th:replace="fragments::slider"></div>
 
-<!-- Begin Login Form -->
-<section id="login-form">
+<!-- Register Form -->
+<section id="register-form">
     <div class="noi-dung">
         <div class="form">
             <br>
-            <h2>ĐĂNG NHẬP</h2>
+            <h2>ĐĂNG KÝ</h2>
             <form action="">
                 <div class="input-form">
                     <!-- <span>User name</span> -->
@@ -27,14 +27,15 @@
                     <!-- <span>Password</span> -->
                     <input type="password" placeholder="Mật khẩu" name="">
                 </div>
-                <div class="Remember-me">
-                    <label><input type="checkbox" name=""> Nhớ Tôi </label>
+                <div class="input-form">
+                    <!-- <span>Password</span> -->
+                    <input type="password" placeholder="Xác nhận mật khẩu" name="">
                 </div>
                 <div class="input-form">
-                    <input type="submit" value="Đăng nhập">
+                    <p>Bạn có tài khoản chưa? <a th:href="@{/login}"> Đăng nhập </a></p>
                 </div>
                 <div class="input-form">
-                    <p>Bạn có tài khoản chưa? <a th:href="@{/register}">Đăng ký </a></p>
+                    <input type="submit" value="Đăng ký">
                 </div>
             </form>
             <h3>Đăng nhập với mạng xã hội</h3>
@@ -45,14 +46,8 @@
             </ul>
         </div>
     </div>
-
-    <div>
-
-    </div>
-
 </section>
-
-<!-- End Login Form -->
+<!-- End Register Form-->
 
 <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 <footer th:replace="fragments::footer"></footer>

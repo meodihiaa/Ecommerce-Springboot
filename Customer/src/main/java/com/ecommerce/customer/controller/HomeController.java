@@ -2,6 +2,7 @@ package com.ecommerce.customer.controller;
 
 import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Category;
+import com.ecommerce.library.model.Product;
 import com.ecommerce.library.service.CategoryService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

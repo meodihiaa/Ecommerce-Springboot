@@ -36,43 +36,28 @@
                     <ul>
                         <li><a href="#"> Liên hệ : 0962701518</a></li>
                         <li><a href="#"><i class="fas fa-location-arrow"></i> Address: Nguyễn Trãi, Thanh Xuân, Hà Nội
-                            </a></li>
+                        </a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                        <option><a href="signup.html">Sign In </a></option>
-                        <option><a href="signup.html">Sign Up </a></option>
+                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
+                        <option value="http://localhost:8020/shop/login" id="login-button">Đăng nhập</option>
+                        <option value="http://localhost:8020/shop/register" id="register-button">Đăng ký</option>
                     </select>
                 </div>
                 <div class="text-slid-box">
                     <div id="offer-box" class="carouselTicker">
                         <ul class="offer-box">
                             <li>
-                                <i class="fab fa-opencart"></i> Off 5% for new members
+                                <i class="fab fa-opencart"></i> Giảm giá 5% cho thành viên mới
                             </li>
                             <li>
-                                <i class="fab fa-opencart"></i> Freeship
+                                <i class="fab fa-opencart"></i> Miễn phí vận chuyển cho đơn hàng <10km
                             </li>
                             <li>
-                                <i class="fab fa-opencart"></i> 10% off Entire Purchase Promo code: OceanPrime
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off upto 10%! Shop Now
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 5% for new members
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Freeship
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 10% off Entire Purchase Promo code: OceanPrime
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Now
+                                <i class="fab fa-opencart"></i> Giảm 10% cho mọi thanh toán áp mã: BACHHOAXANH
                             </li>
                         </ul>
                     </div>
@@ -114,7 +99,7 @@
                             <li><a href="my-account.html">My Account</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">LIÊN HỆ</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -127,7 +112,7 @@
                         <a href="#">
                             <i class="fa fa-shopping-bag"></i>
                             <span class="badge">3</span>
-                            <p>My Cart</p>
+                            <p>Giỏ hàng</p>
                         </a>
                     </li>
                 </ul>
@@ -173,15 +158,15 @@
 <div class="product-item-filter row" th:fragment="nav-product">
     <div class="col-12 col-sm-8 text-center text-sm-left">
         <div class="toolbar-sorter-right">
-            <span>Sort by </span>
-            <select id="basic2" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                <option data-display="Select">Nothing</option>
-                <option value="2">High Price → High Price</option>
-                <option value="3">Low Price → High Price</option>
-                <option value="4">Best Selling</option>
+            <span>Sắp xếp </span>
+            <select id="basic2" class="selectpicker show-tick form-control" data-placeholder="$ USD" onchange="location = this.value;">
+                <option data-display="Select">Không chọn</option>
+                <option value="http://localhost:8020/shop/high-price" id="high-price">Giá cao → Giá thấp</option>
+                <option value="http://localhost:8020/shop/low-price" id="low-price">Giá thấp → Giá cao</option>
+                <option value="4">Bán chạy</option>
             </select>
         </div>
-        <p>Showing all results</p>
+        <p>Hiển thị tất cả</p>
     </div>
     <div class="col-12 col-sm-4 text-center text-sm-right">
         <ul class="nav nav-tabs ml-auto">
@@ -214,8 +199,8 @@
             <div class="col-lg-12">
                 <h2>Menu</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-                    <li class="breadcrumb-item active"> Menu</li>
+                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item active"><a th:href="@{/home}"> Menu</a></li>
                 </ul>
             </div>
         </div>
@@ -223,12 +208,14 @@
 </div>
 <!-- End Slider -->
 
+
 <!-- Start Feed  -->
 <div class="instagram-box" th:fragment="instagram-box">
     <div class="main-instagram owl-carousel owl-theme">
         <div class="item" th:each="product: ${products}">
             <div class="ins-inner-box">
-                <a th:href="@{/find-product/{id} (id=${product.id})}"><img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" alt=""/></a>
+                <a th:href="@{/find-product/{id} (id=${product.id})}"><img
+                        th:src="@{'data:image/jpeg;base64,' + ${product.image}}" alt=""/></a>
 
             </div>
         </div>
@@ -245,26 +232,26 @@
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
-                        <h3>Business Time</h3>
+                        <h3>Giờ làm việc</h3>
                         <ul class="list-time">
-                            <li>Monday - Sunday: 08.00am to 10.00pm</li>
+                            <li>Thứ 2 - Chủ nhật: 8h00 - 21h00</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
-                        <h3>Contact Us</h3>
+                        <h3>Liên hệ</h3>
                         <ul class="list-time">
-                            <li><i class="fas fa-phone-square"></i> Phone number: +84967631186</li>
-                            <li><i class="fas fa-envelope"></i> Email: abc@gmail.com</li>
-                            <li><i class="fas fa-map-marker-alt"></i> Address: Km9, Nguyen Trai, Thanh Xuan</li>
+                            <li><i class="fas fa-phone-square"></i> Số điện thoại: 0962701518</li>
+                            <li><i class="fas fa-envelope"></i> Email: doduccanh@gmail.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Địa chỉ: Km9, Nguyễn Trãi, Thanh Xuân, Hà Nội</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
-                        <h3>Social Media</h3>
-                        <p>Come with Ocean Prime shop - Only Fresh </p>
+                        <h3>Mạng xã hội</h3>
+                        <p>BÁCH HOÁ XANH </p>
                         <ul>
                             <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
                             <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
@@ -299,6 +286,21 @@
     <script th:src="@{/js/form-validator.min.js}"></script>
     <script th:src="@{/js/contact-form-script.js}"></script>
     <script th:src="@{/js/custom.js}"></script>
+    <script>
+        // Kiểm tra URL hiện tại
+        var currentUrl = window.location.href;
+        if (currentUrl.indexOf("high-price") > -1) {
+            // Nếu đang ở trang high-price, đặt giá trị mặc định cho select là "Giá cao → Giá thấp"
+            document.getElementById("high-price").selected = true;
+        } else if (currentUrl.indexOf("low-price") > -1) {
+            // Nếu đang ở trang low-price, đặt giá trị mặc định cho select là "Giá thấp → Giá cao"
+            document.getElementById("low-price").selected = true;
+        } else if (currentUrl.indexOf("login") > -1) {
+            document.getElementById("login-button").selected = true;
+        } else if (currentUrl.indexOf("register") > -1) {
+            document.getElementById("register-button").selected = true;
+        }
+    </script>
 </div>
 </body>
 </html>
