@@ -21,7 +21,7 @@
             <div th:if="${param.error}" class="text-center alert alert-danger">
                 <p>Tên đăng nhập hoặc mật khẩu không chính xác!</p>
             </div>
-            <div th:if="${param.logout}" class="text-center alert alert-warning">
+            <div th:if="${param.logout}" class="text-center alert alert-success">
                 <p>Bạn đã đăng xuất!</p>
             </div>
             <form th:action="@{/do-login}" method="post">

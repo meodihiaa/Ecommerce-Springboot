@@ -44,7 +44,7 @@
                 <div class="login-box">
                     <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
                         <!--<option th:text="${session.username != null} ? ${session.username} : 'Chưa đăng nhập'"></option>-->
-                        <option th:text="${session.username != null} ? ${session.username.substring(0,10) + '...' }: 'Chưa đăng nhập'" value="http://localhost:8020/shop"></option>
+                        <option th:text="${session.username != null} ? ${session.username.substring(0,10) + '...' }: 'Chưa đăng nhập'"></option>
                         <option th:if="${session.username == null}" value="http://localhost:8020/shop/login" id="login-button">Đăng nhập</option>
                         <option th:if = "${session.username != null}" value="http://localhost:8020/shop/logout">Đăng xuất</option>
                         <option th:if="${session.username == null}" value="http://localhost:8020/shop/register" id="register-button" >Đăng ký</option>
@@ -112,7 +112,7 @@
                 <ul>
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                     <li class="side-menu">
-                        <a href="#">
+                        <a th:href="@{/cart}">
                             <i class="fa fa-shopping-bag"></i>
                             <span class="badge">3</span>
                             <p>Giỏ hàng</p>
