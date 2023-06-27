@@ -25,6 +25,7 @@
                     <p th:text="${check}"></p>
                 </div>
                 <div class="table-main table-responsive" th:if="${check == null}">
+
                     <table class="table">
                         <thead>
                         <tr>
@@ -40,7 +41,8 @@
                         <tr th:each="cartItem : ${shoppingCart.cartItem}">
                             <td class="thumbnail-img">
                                 <a th:href="@{/find-product/{id} (id=${cartItem.product.id})}">
-                                    <img class="img-fluid" th:src="@{'data:image/jpeg;base64,' + ${cartItem.product.image}}" alt=""/>
+                                    <img class="img-fluid"
+                                         th:src="@{'data:image/jpeg;base64,' + ${cartItem.product.image}}" alt=""/>
                                 </a>
                             </td>
                             <td class="name-pr">
@@ -49,19 +51,32 @@
                             <td class="price-pr">
                                 <p th:text="'$' + ${cartItem.product.costPrice}"></p>
                             </td>
-                            <td class="quantity-box"><input type="number" th:value="${cartItem.quantity}" size="4" value="1" min="0" step="1"
-                                                            class="c-input-text qty text"></td>
-                            <td class="total-pr">
-                                <p th:text="'$' + ${cartItem.totalPrice}"></p>
-                            </td>
-                            <td class="remove-pr">
-                                <a href="#">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </td>
+                            <form th:action="@{/update-cart}" method="post">
+                                <td class="quantity-box"><input type="number" th:value="${cartItem.quantity}"
+                                                                name="quantity" size="4"
+                                                                value="1" min="0" step="1"
+                                                                class="c-input-text qty text"></td>
+                                <td class="total-pr">
+                                    <p th:text="'$' + ${cartItem.totalPrice}"></p>
+                                </td>
+
+                                <td class="remove-pr">
+                                    <button type="submit" name="action" value="update" title="Cập nhật sản phẩm"
+                                            class="btn btn-warning">
+                                        Cập nhật
+                                    </button>
+                                    <button type="submit" name="action" value="delete" title="Xoá sản phẩm"
+                                            class="btn btn-danger">
+                                        Xoá
+                                    </button>
+                                    <input type="hidden" th:value="${cartItem.product.id}" name="id">
+                                </td>
+                            </form>
+
                         </tr>
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

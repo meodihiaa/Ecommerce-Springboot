@@ -7,7 +7,6 @@ import com.ecommerce.library.service.CustomerService;
 import com.ecommerce.library.service.ProductService;
 import com.ecommerce.library.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,28 +28,68 @@ public class CartController {
     @GetMapping("/cart")
     public String cart(Model model, Principal principal) {
         if (principal == null) return "redirect:/login";
-        String username = principal.getName();
-        Customer customer = customerService.findByUsername(username);
-        ShoppingCart shoppingCart = customer.getShoppingCart();
-        if (shoppingCart == null) {
-            model.addAttribute("check", "Không có sản phẩm trong giỏ hàng");
+        else {
+            String username = principal.getName();
+            Customer customer = customerService.findByUsername(username);
+            ShoppingCart shoppingCart = customer.getShoppingCart();
+            if (shoppingCart == null) {
+                model.addAttribute("check", "Không có sản phẩm trong giỏ hàng");
+            }
+            model.addAttribute("shoppingCart", shoppingCart);
+            model.addAttribute("title", "Giỏ hàng");
+            return "cart";
         }
-        model.addAttribute("shoppingCart", shoppingCart);
-        return "cart";
     }
 
     @PostMapping("/add-to-cart")
     public String addItemToCart(
             @RequestParam("id") Long productId,
-        @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity,
-        Principal principal,
-        Model model,
-        HttpServletRequest request) {
+            @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity,
+            Principal principal,
+            Model model,
+            HttpServletRequest request) {
         if (principal == null) return "redirect:/login";
-        Product product = productService.getProductById(productId);
-        String username = principal.getName();
-        Customer customer = customerService.findByUsername(username);
-        ShoppingCart cart = cartService.addItemToCart(product, quantity, customer);
-        return "redirect:" + request.getHeader("Referer");
+        else {
+            Product product = productService.getProductById(productId);
+            String username = principal.getName();
+            Customer customer = customerService.findByUsername(username);
+            ShoppingCart cart = cartService.addItemToCart(product, quantity, customer);
+            return "redirect:" + request.getHeader("Referer");
+        }
+
+    }
+
+    @RequestMapping(value = "/update-cart", method = RequestMethod.POST, params = "action=delete")
+    public String deleteItemFromCart(
+            @RequestParam("id") Long productId,
+            Model model,
+            Principal principal) {
+        if (principal == null) return "redirect:/login";
+        else {
+            Product product = productService.getProductById(productId);
+            String username = principal.getName();
+            Customer customer = customerService.findByUsername(username);
+            ShoppingCart cart = cartService.deleteItemFromCart(product, customer);
+            model.addAttribute("shoppingCart", cart);
+            return "redirect:/cart";
+
+        }
+    }
+
+    @RequestMapping(value = "/update-cart", method = RequestMethod.POST, params = "action=update")
+    public String updateCart(@RequestParam("id") Long productId,
+                             @RequestParam("quantity") int quantity,
+                             Model model,
+                             Principal principal) {
+        if (principal == null) return "redirect:/login";
+        else {
+            Product product = productService.getProductById(productId);
+            String username = principal.getName();
+            Customer customer = customerService.findByUsername(username);
+            ShoppingCart cart = cartService.updateItemInCart(product, quantity, customer);
+            model.addAttribute("shoppingCart", cart);
+            return "redirect:/cart";
+        }
+
     }
 }
