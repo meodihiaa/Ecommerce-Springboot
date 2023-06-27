@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 @Controller
@@ -26,15 +27,17 @@ public class CartController {
     private ProductService productService;
 
     @GetMapping("/cart")
-    public String cart(Model model, Principal principal) {
+    public String cart(Model model, Principal principal, HttpSession session) {
         if (principal == null) return "redirect:/login";
         else {
             String username = principal.getName();
             Customer customer = customerService.findByUsername(username);
             ShoppingCart shoppingCart = customer.getShoppingCart();
+            session.setAttribute("totalItems", shoppingCart.getTotalItems());
             if (shoppingCart == null) {
                 model.addAttribute("check", "Không có sản phẩm trong giỏ hàng");
             }
+            model.addAttribute("subTotal", shoppingCart.getTotalPrices());
             model.addAttribute("shoppingCart", shoppingCart);
             model.addAttribute("title", "Giỏ hàng");
             return "cart";
