@@ -3,8 +3,11 @@ package com.ecommerce.customer.controller;
 import com.ecommerce.library.dto.CategoryDto;
 import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Category;
+import com.ecommerce.library.model.Customer;
 import com.ecommerce.library.model.Product;
+import com.ecommerce.library.model.ShoppingCart;
 import com.ecommerce.library.service.CategoryService;
+import com.ecommerce.library.service.CustomerService;
 import com.ecommerce.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +29,11 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private CustomerService customerService;
+
     @GetMapping("/products")
-    public String products(Model model) {
+    public String products(Model model, Principal principal, HttpSession session) {
         model.addAttribute("title", "Products");
         List<Product> products = productService.getAllProducts();
         List<Product> listViewProducts = productService.listViewProducts();
@@ -35,7 +42,17 @@ public class ProductController {
 
         List<CategoryDto> categories = categoryService.getCategoryAndProduct();
         model.addAttribute("categories", categories);
-
+        if (principal != null) {
+            session.setAttribute("username", principal.getName());
+            Customer customer = customerService.findByUsername(principal.getName());
+            ShoppingCart cart = customer.getShoppingCart();
+            if (cart == null) {
+                cart = new ShoppingCart();
+            }
+            session.setAttribute("totalItems", cart.getTotalItems());
+        } else {
+            session.removeAttribute("username");
+        }
 
 
         return "shop";

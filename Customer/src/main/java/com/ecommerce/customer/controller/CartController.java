@@ -33,8 +33,11 @@ public class CartController {
             String username = principal.getName();
             Customer customer = customerService.findByUsername(username);
             ShoppingCart shoppingCart = customer.getShoppingCart();
-            session.setAttribute("totalItems", shoppingCart.getTotalItems());
             if (shoppingCart == null) {
+                shoppingCart = new ShoppingCart();
+            }
+            session.setAttribute("totalItems", shoppingCart.getTotalItems());
+            if (shoppingCart.getCartItem().size() == 0) {
                 model.addAttribute("check", "Không có sản phẩm trong giỏ hàng");
             }
             model.addAttribute("subTotal", shoppingCart.getTotalPrices());
